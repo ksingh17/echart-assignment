@@ -1,25 +1,30 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import ReactECharts from 'echarts-for-react';
+import wineData from '../src/Wine-Data.json'
+import LineGraph from './Graphs/LineGraph';
+import BarGraph from './Graphs/BarGraph';
+const flavanoids=[];
+const ash=[]
+const alcohol=[]
+const magnesium=[]
+const App = () => {
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+  return(
+    <div>
+  
+            {wineData.map((item, index) => {
+                flavanoids.push(item.Flavanoids)
+                ash.push(item.Ash)
+                alcohol.push(item.Alcohol)
+                magnesium.push(item.Magnesium)
+
+            
+
+            })}
+             <LineGraph ash={ash} flavanoid={flavanoids}/>
+                        <BarGraph alcohol={alcohol} magnesium={magnesium}/>
+        </div>
+  )
+};
 
 export default App;
